@@ -170,6 +170,53 @@ function createLinkedList() {
     }
   }
 
+  const insertAt = (value, index) => {
+    // If the list is empty
+    //    return head null
+    // Create newNode with value
+    // Else set count = 0
+    // Walk through nodes until count = index - 1
+    // Store currentNode.next in a variable oldNode
+    // Set currentNode.next to newNode
+    // set currentNode.next.next to oldNode
+    const newNode = createNode(value)
+    let count = 0
+    //If the linked list is empty
+    if (linkedList.head === null) {
+      return linkedList.head
+    } else {
+      let currentNode = linkedList.head
+      //Else walk through nodes until count === index
+      while (count < index - 1) {
+        currentNode = currentNode.next
+        count++
+      }
+      let oldNode = currentNode.next
+      currentNode.next = newNode
+      currentNode.next.next = oldNode
+    }
+  }
+
+  const removeAt = (index) => {
+    let count = 0
+    //If the linked list is empty
+    if (linkedList.head === null) {
+      return linkedList.head
+    } else {
+      let currentNode = linkedList.head
+      //Else walk through nodes until count === index
+      while (count < index - 1) {
+        currentNode = currentNode.next
+        count++
+      }
+      if (!currentNode.next.next) {
+        currentNode.next = null
+      } else {
+        currentNode.next = currentNode.next.next
+      }
+    }
+  }
+
   return {
     linkedList,
     appendNode,
@@ -182,6 +229,8 @@ function createLinkedList() {
     contains,
     find,
     toString,
+    insertAt,
+    removeAt,
   }
 }
 

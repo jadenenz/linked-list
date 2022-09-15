@@ -257,3 +257,47 @@ test("toString returns the entire list of nodes in the correct format", () => {
   console.log(list.head())
   expect(list.toString()).toBe(testString)
 })
+
+test("insertAt inserts a node with provided value at the given index", () => {
+  list.appendNode(1)
+  list.appendNode(2)
+  list.appendNode(3)
+  list.insertAt(5, 1)
+  const testObject = {
+    head: {
+      value: 1,
+      next: {
+        value: 5,
+        next: {
+          value: 2,
+          next: {
+            value: 3,
+            next: null,
+          },
+        },
+      },
+    },
+  }
+  expect(list.linkedList).toMatchObject(testObject)
+})
+
+test("removeAt removes a node at the provided index", () => {
+  list.appendNode(1)
+  list.appendNode(2)
+  list.appendNode(3)
+  list.appendNode(4)
+  list.removeAt(2)
+  const testObject = {
+    head: {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 4,
+          next: null,
+        },
+      },
+    },
+  }
+  expect(list.linkedList).toMatchObject(testObject)
+})
